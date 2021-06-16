@@ -27,18 +27,13 @@ void matrix_scan_user(void) {
     tap_code(KC_MS_DOWN);
     key_timer = timer_read();
     waiting = true;
-  } else if (timer_elapsed(key_timer) > 50000) {
+  } else if (timer_elapsed(key_timer) > 60000) {
     waiting = false;    
   }
  
   
   if (mouse_jiggle_mode) {      
-    tap_code(KC_MS_UP);    
-    tap_code(KC_MS_DOWN);
-    tap_code(KC_MS_LEFT);
-    tap_code(KC_MS_RIGHT);
-    //tap_code(KC_MS_WH_UP);
-    //tap_code(KC_MS_WH_DOWN);
+   
   } else {
 
   }
