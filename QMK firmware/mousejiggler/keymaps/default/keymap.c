@@ -12,7 +12,7 @@ static uint16_t key_timer;
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
-	KEYMAP(
+	KEYMAPX(
 		MOUSEJIGGLERMACRO)
 
 };
@@ -23,18 +23,17 @@ void matrix_init_user(void) {
 void matrix_scan_user(void) {
   
   if (!waiting) {
-    tap_code(KC_C);
-    tap_code(KC_5);
+    tap_code(KC_MS_UP);
+    tap_code(KC_MS_DOWN);
     key_timer = timer_read();
     waiting = true;
-  } else if (timer_elapsed(key_timer) > 5000) {
+  } else if (timer_elapsed(key_timer) > 50000) {
     waiting = false;    
   }
  
   
   if (mouse_jiggle_mode) {      
-    tap_code(KC_MS_UP);
-    
+    tap_code(KC_MS_UP);    
     tap_code(KC_MS_DOWN);
     tap_code(KC_MS_LEFT);
     tap_code(KC_MS_RIGHT);

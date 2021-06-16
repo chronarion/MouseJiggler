@@ -3,7 +3,7 @@
 
 #include "quantum.h"
 
-#define KEYMAP( \
+#define KEYMAPX( \
 	K00  \
 ) { \
 	{ K00 }  \
