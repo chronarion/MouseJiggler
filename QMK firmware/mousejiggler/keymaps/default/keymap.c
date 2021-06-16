@@ -7,6 +7,8 @@ enum custom_keycodes {
 
 
 bool mouse_jiggle_mode = false;
+bool waiting = false;
+static uint16_t key_timer;
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
@@ -19,13 +21,25 @@ void matrix_init_user(void) {
 }
 
 void matrix_scan_user(void) {
-  if (mouse_jiggle_mode) {
+  
+  if (!waiting) {
+    tap_code(KC_C);
+    tap_code(KC_5);
+    key_timer = timer_read();
+    waiting = true;
+  } else if (timer_elapsed(key_timer) > 5000) {
+    waiting = false;    
+  }
+ 
+  
+  if (mouse_jiggle_mode) {      
     tap_code(KC_MS_UP);
+    
     tap_code(KC_MS_DOWN);
     tap_code(KC_MS_LEFT);
     tap_code(KC_MS_RIGHT);
-    tap_code(KC_MS_WH_UP);
-    tap_code(KC_MS_WH_DOWN);
+    //tap_code(KC_MS_WH_UP);
+    //tap_code(KC_MS_WH_DOWN);
   } else {
 
   }
